@@ -10,8 +10,7 @@ const YOUTUBE_OAUTH_TOKEN = process.env.YOUTUBE_OAUTH_TOKEN;
 const BASE_URL = "https://www.googleapis.com/youtube/v3";
 
 if (!YOUTUBE_API_KEY) {
-  console.error("FATAL: YOUTUBE_API_KEY environment variable is required");
-  process.exit(1);
+  console.warn("WARNING: YOUTUBE_API_KEY not set — tools will return errors until configured");
 }
 
 function apiHeaders(oauth = false) {
@@ -23,6 +22,7 @@ function apiHeaders(oauth = false) {
 }
 
 async function ytFetch(path: string, params: Record<string, any> = {}, opts: any = {}) {
+  if (!YOUTUBE_API_KEY) throw new Error("YOUTUBE_API_KEY is not configured. Set it in your MCPize server environment.");
   const url = new URL(`${BASE_URL}${path}`);
   params.key = YOUTUBE_API_KEY;
   for (const [k, v] of Object.entries(params)) {
