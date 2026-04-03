@@ -1,0 +1,14 @@
+name: youtube-complete
+display_name: "YouTube Complete"
+description: "Complete YouTube MCP server. Search videos, manage channels, upload content, track analytics, and moderate comments — all from your AI assistant."
+tagline: "Stop manually managing your YouTube channel."
+version: 1
+runtime: typescript
+env:
+  - name: YOUTUBE_API_KEY
+    description: YouTube Data API v3 key
+    required: true
+  - name: YOUTUBE_OAUTH_TOKEN
+    description: OAuth token for write operations (upload, post comments)
+    required: false
+tags: [youtube, video, analytics, content-creation, social-media, automation, channels]
